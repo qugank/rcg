@@ -619,6 +619,7 @@ class RDM(DDPM):
         if gen_img:
             return self.gen_imgs(cfg=cfg, class_label_gen=class_label_gen)
         if batch is not None:
+          # TODO: feature extraction here (fun get_input)!
             x, c = self.get_input(batch, self.first_stage_key)
             c = {'class_label': c['class_label']}
         t = torch.randint(0, self.num_timesteps, (x.shape[0],)).cuda().long()

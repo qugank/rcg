@@ -13,6 +13,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
 import timm
+import pdb
 
 assert timm.__version__ == "0.3.2"  # version check
 
@@ -86,6 +87,7 @@ def get_args_parser():
 
 
 def main(args):
+    # pdb.set_trace()
     misc.init_distributed_mode(args)
 
     print('job dir: {}'.format(os.path.dirname(os.path.realpath(__file__))))
@@ -117,7 +119,8 @@ def main(args):
         transforms.ToTensor()]
     )
 
-    dataset_train = datasets.ImageFolder(os.path.join(args.data_path, 'train'), transform=transform_train)
+    # dataset_train = datasets.ImageFolder(os.path.join(args.data_path, 'train'), transform=transform_train)
+    dataset_train = datasets.ImageFolder(args.data_path, transform=transform_train)
     print(dataset_train)
 
     if True:  # args.distributed:
